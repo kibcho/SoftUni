@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Problem3.MaximumElement
+{
+    class MaximumElement
+    {
+        static void Main()
+        {
+            int n = int.Parse(Console.ReadLine());
+            Stack<int> numbers = new Stack<int>();
+            Stack<int> forPrint = new Stack<int>();
+            for (int i = 0; i < n; i++)
+            {
+                string[] input = Console.ReadLine().Split(' ').ToArray();
+
+                int query = int.Parse(input[0]);
+                if (query == 1)
+                {
+                    int curNum = int.Parse(input[1]);
+                    numbers.Push(curNum);
+                    if (forPrint.Count == 0)
+                    {
+                        forPrint.Push(curNum);
+                    }
+                    else
+                    {
+                        
+                        if (forPrint.Peek()<curNum)
+                        {
+                            forPrint.Push(curNum);
+                        }
+
+                    }
+                   
+                }
+                else if (query == 2 && numbers.Count > 0)
+                {
+                    if (numbers.Peek()==forPrint.Peek())
+                    {
+                        forPrint.Pop();
+                    }
+                    numbers.Pop();
+                }
+                else if (query == 3 && numbers.Count > 0)
+                {
+
+                    Console.WriteLine(forPrint.Peek());
+                }
+            }
+        }
+    }
+}
