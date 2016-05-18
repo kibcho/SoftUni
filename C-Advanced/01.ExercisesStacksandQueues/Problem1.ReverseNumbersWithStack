@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExercisesStacksandQueues
+{
+    class ReverseNumbersWithStack
+    {
+        static void Main()
+        {
+            var nums = Console.ReadLine().Trim()
+                .Split(new char [] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse).ToArray();
+           
+            Stack<int> numbers = new Stack<int>(nums);
+            Console.Write(string.Join( " ",numbers));
+          
+        }
+    }
+}
