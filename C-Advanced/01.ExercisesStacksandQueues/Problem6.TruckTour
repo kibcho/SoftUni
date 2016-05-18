@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Problem6.TruckTour
+{
+    class TruckTour
+    {
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            Queue<int[]> input = new Queue<int[]>();
+            int circleCounter = 0;
+            int fuellInTank = 0;
+          
+            int startPump = 0;
+            for (int i = 0; i < n; i++)
+            {
+                int[] curInput = Console.ReadLine().Trim()
+                .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse).ToArray();
+                input.Enqueue(curInput);
+             
+            }
+            for (int i = 0; i < n*2; i++)
+            {
+                circleCounter++;
+               
+                int[] curPomp = input.Dequeue();
+                input.Enqueue(curPomp);
+                int petrolInPump = curPomp[0];
+                int distance = curPomp[1];
+                fuellInTank += petrolInPump;
+                if (circleCounter == n)
+                {
+                    Console.WriteLine(startPump);
+                    break;
+                }
+                if (fuellInTank>=distance)
+                {
+                    fuellInTank -= distance;
+                }
+                else
+                {
+                    startPump = i+1;
+                    circleCounter = 0;
+                    fuellInTank = 0;
+                    
+                }
+                
+               
+            }
+           
+        }
+    }
+}
